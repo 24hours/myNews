@@ -7,13 +7,18 @@
 from scrapy import Request
 import re
 import time 
+import pymongo
 
 class DupePipeline(object):
   def __init__(self):
-    self.ids_seen = set()
+    self.ids_seem = set()
 
   def process_item(self, item, spider):
-    if item['url'] in self.ids_seen:
+    client = MongoClient()
+    db = client['newsDatabase']
+    coll = db['news']
+
+    if item['url'] in self.ids_seen or coll.find_one(item['url']) is not None:
       raise DropItem("Duplicate item found: %s" % item)
     else:
       self.ids_seen.add(item['url'])
@@ -44,4 +49,9 @@ class ContentPipeline(object):
     # print news
     return item
 
-
+class MongoPipeline(object):
+  def process_item(self, item, spider):
+    client = MongoClient()
+    db = client['newsDatabase']
+    item['_id'] = item['url']
+    result = db.news.insert_one(dict(item))

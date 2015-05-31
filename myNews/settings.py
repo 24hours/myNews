@@ -16,8 +16,9 @@ NEWSPIDER_MODULE = 'myNews.spiders'
 
 ITEM_PIPELINES = {
     'myNews.pipelines.DupePipeline': 100,
-    'myNews.pipelines.DatePipeline': 100,
+    'myNews.pipelines.DatePipeline': 200,
     'myNews.pipelines.ContentPipeline': 300,
+    'myNews.pipelines.MongoPipeline' : 400,
 }
 
 
