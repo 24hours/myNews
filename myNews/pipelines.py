@@ -11,7 +11,7 @@ from pymongo import MongoClient
 
 class DupePipeline(object):
   def __init__(self):
-    self.ids_seem = set()
+    self.ids_seen = set()
 
   def process_item(self, item, spider):
     client = MongoClient()
