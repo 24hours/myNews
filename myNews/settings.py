@@ -12,7 +12,7 @@ BOT_NAME = 'myNews'
 
 SPIDER_MODULES = ['myNews.spiders']
 NEWSPIDER_MODULE = 'myNews.spiders'
-
+DOWNLOAD_DELAY = 5
 
 ITEM_PIPELINES = {
     'myNews.pipelines.DupePipeline': 100,
