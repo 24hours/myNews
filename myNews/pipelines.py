@@ -7,7 +7,7 @@
 from scrapy import Request
 import re
 import time 
-import pymongo
+from pymongo import MongoClient
 
 class DupePipeline(object):
   def __init__(self):
